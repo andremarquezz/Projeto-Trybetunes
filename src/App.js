@@ -13,7 +13,10 @@ class App extends React.Component {
     return (
       <Switch>
         <Route path="/search" component={ Search } />
-        <Route path="/album/:id" component={ Album } />
+        <Route
+          path="/album/:id"
+          render={ (propsRouter) => <Album { ...propsRouter } /> }
+        />
         <Route path="/favorites" component={ Favorites } />
         <Route path="/profile/edit" component={ ProfileEdit } />
         <Route path="/profile" component={ Profile } />
