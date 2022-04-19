@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 
@@ -8,24 +8,9 @@ class Login extends Component {
     super();
     this.state = {
       loginName: '',
-      // buttonDisabled: true,
       loading: false,
     };
   }
-
-  // validateButton = () => {
-  //   const { loginName } = this.state;
-  //   const minNum = 3;
-  //   if (loginName.length >= minNum) {
-  //     this.setState({
-  //       buttonDisabled: false,
-  //     });
-  //   } else {
-  //     this.setState({
-  //       buttonDisabled: true,
-  //     });
-  //   }
-  // };
 
   onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -78,12 +63,10 @@ class Login extends Component {
   }
 }
 
-// Login.propTypes = {
-//   loginName: PropTypes.string.isRequired,
-//   // PropTypes.shape({history : PropTypes.object.isRequired,}),
-//   eventOnChange: PropTypes.func.isRequired,
-//   buttonDisabled: PropTypes.bool.isRequired,
-//   loading: PropTypes.bool.isRequired,
-// };
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;
