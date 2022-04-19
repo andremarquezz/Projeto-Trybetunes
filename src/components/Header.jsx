@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { getUser } from '../services/userAPI';
+import Loading from './Loading';
 
 class Header extends Component {
   constructor() {
     super();
     this.state = {
       name: '',
+      loading: false,
     };
   }
 
@@ -14,18 +16,20 @@ class Header extends Component {
   }
 
   user = async () => {
+    this.setState({ loading: true });
     const data = await getUser();
     const { name } = data;
     this.setState({
       name,
+      loading: false,
     });
   };
 
   render() {
-    const { name } = this.state;
+    const { name, loading } = this.state;
     return (
       <header data-testid="header-component">
-        <h2>{name}</h2>
+        {loading ? <Loading /> : <h2 data-testid="header-user-name">{name}</h2>}
       </header>
     );
   }
