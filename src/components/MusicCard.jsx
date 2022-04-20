@@ -1,45 +1,81 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false,
+      loading: true,
       songsFavorite: [],
     };
   }
 
-  removeFavorite = (trackId, target) => {
-    const { songsFavorite } = this.state;
-    if (target.checked) {
-      songsFavorite.filter((song) => song !== trackId);
-    }
-  };
+  componentDidMount() {
+    this.getFavorites();
+  }
 
-  saveFavorite = async (trackId, { target }) => {
+  getFavorites = async () => {
+    const FavoriteSongs = await getFavoriteSongs();
     this.setState(
-      ({ songsFavorite }) => ({
-        loading: true,
-        songsFavorite: [...songsFavorite, trackId],
-      }),
-      async () => {
-        const { songs } = this.props;
-        const musicFavorite = songs.find((track) => track.trackId === trackId);
-        await addSong(musicFavorite);
+      {
+        songsFavorite: FavoriteSongs,
+      },
+      () => {
         this.setState({
           loading: false,
         });
-        this.removeFavorite(trackId, target);
       },
     );
+  };
+
+  removeFavorite = (trackId) => {
+    const { songsFavorite } = this.state;
+    const teste2 = songsFavorite.filter((song) => song !== trackId);
+    this.setState({
+      songsFavorite: teste2,
+    });
+  };
+
+  saveFavorite = async (trackId, { target }) => {
+    const { songsFavorite } = this.state;
+    const teste = songsFavorite.some((songId) => songId === trackId);
+    if (teste) {
+      this.removeFavorite(trackId);
+    } else {
+      this.setState(
+        ({ songsFavorite }) => ({
+          loading: true,
+          songsFavorite: [...songsFavorite, trackId],
+        }),
+        async () => {
+          // //('checked save', target.checked);
+          const { songs } = this.props;
+          const musicFavorite = songs.find((track) => track.trackName === trackId);
+          console.log('musicFavorite', musicFavorite);
+          await addSong(musicFavorite);
+          console.log(this.state.songsFavorite);
+          this.setState({
+            loading: false,
+          });
+        },
+      );
+    }
+  };
+
+  teste3 = (trackName) => {
+    const { songsFavorite } = this.state;
+    const teste4 = songsFavorite.some((songId) => songId.trackName === trackName);
+    // //('checked', teste4);
+    // ('trackName', trackName);
+    return teste4;
   };
 
   render() {
     const { loading, songsFavorite } = this.state;
     const { songs } = this.props;
+    // ('songsFavorite', songsFavorite);
     return (
       <d>
         {loading ? (
@@ -54,10 +90,10 @@ class MusicCard extends Component {
               <label htmlFor="checkbox">
                 <input
                   type="checkbox"
-                  checked={ songsFavorite.some((songId) => songId === trackId) }
+                  checked={ this.teste3(trackName) }
                   name="checkbox"
                   data-testid={ `checkbox-music-${trackId}` }
-                  onChange={ (event) => this.saveFavorite(trackId, event) }
+                  onChange={ (event) => this.saveFavorite(trackName, event) }
                 />
                 Favorita
               </label>
