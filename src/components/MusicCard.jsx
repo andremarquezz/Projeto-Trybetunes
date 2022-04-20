@@ -38,16 +38,16 @@ class MusicCard extends Component {
     });
   };
 
-  saveFavorite = async (trackId, { target }) => {
+  saveFavorite = async (trackId) => {
     const { songsFavorite } = this.state;
     const teste = songsFavorite.some((songId) => songId === trackId);
     if (teste) {
       this.removeFavorite(trackId);
     } else {
       this.setState(
-        ({ songsFavorite }) => ({
+        (prevState) => ({
           loading: true,
-          songsFavorite: [...songsFavorite, trackId],
+          songsFavorite: [...prevState.songsFavorite, trackId],
         }),
         async () => {
           // //('checked save', target.checked);
@@ -55,7 +55,7 @@ class MusicCard extends Component {
           const musicFavorite = songs.find((track) => track.trackName === trackId);
           console.log('musicFavorite', musicFavorite);
           await addSong(musicFavorite);
-          console.log(this.state.songsFavorite);
+          // console.log(this.state.songsFavorite);
           this.setState({
             loading: false,
           });
@@ -73,7 +73,7 @@ class MusicCard extends Component {
   };
 
   render() {
-    const { loading, songsFavorite } = this.state;
+    const { loading } = this.state;
     const { songs } = this.props;
     // ('songsFavorite', songsFavorite);
     return (
