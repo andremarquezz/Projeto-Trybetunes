@@ -25,7 +25,6 @@ class Album extends Component {
     } = this.props;
     const data = await getMusics(id);
     const dataSongs = data.filter(({ kind }) => kind === 'song');
-    console.log(dataSongs);
     this.setState({
       infoTracks: data[0],
       tracks: dataSongs,
