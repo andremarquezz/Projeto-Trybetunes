@@ -32,11 +32,12 @@ class MusicCard extends Component {
 
   removeFavorite = (trackName) => {
     const { songsFavorite } = this.state;
-    const filterSongFavorite = songsFavorite.find((song) => song.trackName === trackName);
-    this.setState((prevState) => ({
-      songsFavorite: [...prevState.songsFavorite, filterSongFavorite],
-    }));
-    removeSong(filterSongFavorite);
+    const listFavorit = songsFavorite.filter((song) => (song.trackName !== trackName));
+    const songFavorit = songsFavorite.find((song) => song.trackName === trackName);
+    this.setState({
+      songsFavorite: [listFavorit],
+    });
+    removeSong(songFavorit);
   };
 
   saveFavorite = async (trackName) => {
