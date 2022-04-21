@@ -6,7 +6,7 @@
 
 .containerCard {
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px;
   display: flex;
   flex-direction: column;
   height: 200px;
@@ -22,5 +22,6 @@
 input {
   background-color: white;
   height: 15px;
+  outline: none;
   width: 15px;
 }

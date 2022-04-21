@@ -46,6 +46,6 @@ img {
 
 /* CSS Reset */
 
-body{
-  background-color: var( --main-color);
+body {
+  background-color: rgb(222, 214, 214);
 }
