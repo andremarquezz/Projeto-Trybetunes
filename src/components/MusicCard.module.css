@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.containerCard {
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+  margin: 50px;
+  width: 500px;
+}
+
+.audio {
+  margin: 15px;
+}
+
+input {
+  background-color: white;
+  height: 15px;
+  width: 15px;
+}

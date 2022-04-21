@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
+import styles from './MusicCard.module.css';
 
 class MusicCard extends Component {
   constructor() {
@@ -30,14 +31,10 @@ class MusicCard extends Component {
     );
   };
 
-  removeFavorite = (trackName) => {
+  isFavorite = (trackName) => {
     const { songsFavorite } = this.state;
-    const listFavorit = songsFavorite.filter((song) => (song.trackName !== trackName));
-    const songFavorit = songsFavorite.find((song) => song.trackName === trackName);
-    this.setState({
-      songsFavorite: [listFavorit],
-    });
-    removeSong(songFavorit);
+    const getFavorite = songsFavorite.some((song) => song.trackName === trackName);
+    return getFavorite;
   };
 
   saveFavorite = async (trackName) => {
@@ -54,7 +51,7 @@ class MusicCard extends Component {
           songsFavorite: [...prevState.songsFavorite, findSongFavorite],
         }),
         async () => {
-          const musicFavorite = songs.find((track) => track.trackName === trackName);
+          const musicFavorite = songs.find((song) => song.trackName === trackName);
           await addSong(musicFavorite);
           this.setState({
             loading: false,
@@ -64,25 +61,33 @@ class MusicCard extends Component {
     }
   };
 
-  // verifico se é favorito, vindo do button pra ficar checked
-  isFavorite = (trackName) => {
+  removeFavorite = (trackName) => {
     const { songsFavorite } = this.state;
-    const getFavorite = songsFavorite.some((song) => song.trackName === trackName);
-    return getFavorite;
+    const listFavorit = songsFavorite.filter((song) => song.trackName !== trackName);
+    const songFavorit = songsFavorite.find((song) => song.trackName === trackName);
+    this.setState({
+      songsFavorite: [listFavorit],
+    });
+    removeSong(songFavorit);
   };
 
   render() {
     const { loading } = this.state;
     const { songs } = this.props;
     return (
-      <d>
+      <div className={ styles.container }>
         {loading ? (
           <Loading />
         ) : (
           songs.map(({ trackName, previewUrl, trackId }) => (
-            <div key={ trackId }>
+            <div key={ trackId } className={ styles.containerCard }>
               <p>{trackName}</p>
-              <audio data-testid="audio-component" src={ previewUrl } controls>
+              <audio
+                data-testid="audio-component"
+                src={ previewUrl }
+                className={ styles.audio }
+                controls
+              >
                 <track kind="captions" />
               </audio>
               <label htmlFor="checkbox">
@@ -98,7 +103,7 @@ class MusicCard extends Component {
             </div>
           ))
         )}
-      </d>
+      </div>
     );
   }
 }

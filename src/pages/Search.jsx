@@ -3,6 +3,7 @@ import CardAlbum from '../components/CardAlbum';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import styles from './Search.module.css';
 
 class Search extends Component {
   constructor() {
@@ -49,7 +50,7 @@ class Search extends Component {
         {loading ? (
           <Loading />
         ) : (
-          <form>
+          <form className={ styles.container }>
             <input
               name="nameSearch"
               type="text"

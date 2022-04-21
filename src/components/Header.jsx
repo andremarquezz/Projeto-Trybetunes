@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
-import './Header.css';
+import styles from './Header.module.css';
 
 class Header extends Component {
   constructor() {
@@ -34,21 +34,31 @@ class Header extends Component {
         {loading ? (
           <Loading />
         ) : (
-          <h2 data-testid="header-user-name" className="nameUser">
-            {name}
-          </h2>
+          <>
+            <div className={ styles.containerName }>
+              <h2 data-testid="header-user-name">{name}</h2>
+            </div>
+            <nav className={ styles.navBar }>
+              <Link to="/search" data-testid="link-to-search" className={ styles.links }>
+                Search
+              </Link>
+              <Link
+                to="/favorites"
+                data-testid="link-to-favorites"
+                className={ styles.links }
+              >
+                Favorites
+              </Link>
+              <Link
+                to="/profile"
+                data-testid="link-to-profile"
+                className={ styles.links }
+              >
+                Profile
+              </Link>
+            </nav>
+          </>
         )}
-        <nav className="nav-bar">
-          <Link to="/search" data-testid="link-to-search">
-            Search
-          </Link>
-          <Link to="/favorites" data-testid="link-to-favorites">
-            Favorites
-          </Link>
-          <Link to="/profile" data-testid="link-to-profile">
-            Profile
-          </Link>
-        </nav>
       </header>
     );
   }
