@@ -43,7 +43,14 @@ class MusicCard extends Component {
     const findSongFavorite = songs.find((song) => song.trackName === trackName);
     const haveFavorite = songsFavorite.some((song) => song.trackName === trackName);
     if (haveFavorite) {
-      this.removeFavorite(trackName);
+      this.setState(
+        () => ({
+          loading: true,
+        }),
+        () => {
+          this.removeFavorite(trackName);
+        },
+      );
     } else {
       this.setState(
         (prevState) => ({
@@ -61,14 +68,15 @@ class MusicCard extends Component {
     }
   };
 
-  removeFavorite = (trackName) => {
+  removeFavorite = async (trackName) => {
     const { songsFavorite } = this.state;
     const listFavorit = songsFavorite.filter((song) => song.trackName !== trackName);
     const songFavorit = songsFavorite.find((song) => song.trackName === trackName);
+    await removeSong(songFavorit);
     this.setState({
       songsFavorite: [listFavorit],
+      loading: false,
     });
-    removeSong(songFavorit);
   };
 
   render() {
