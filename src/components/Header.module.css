@@ -39,7 +39,7 @@
   height: 50px;
   left: 0;
   top: 4px;
-  width: 1440px;
+  width: 100vw;
 }
 
 .containerName h2 {
@@ -53,5 +53,5 @@
   left: 1192px;
   position: absolute;
   top: 5px;
-  width: 198.7px;
+  width: 15vw;
 }

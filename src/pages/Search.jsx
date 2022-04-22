@@ -50,29 +50,28 @@ class Search extends Component {
         {loading ? (
           <Loading />
         ) : (
-          <form className={ styles.container }>
-            <input
-              name="nameSearch"
-              type="text"
-              placeholder="Nome do Artista ou Banda"
-              data-testid="search-artist-input"
-              value={ nameSearch }
-              onChange={ this.onInputChange }
-            />
-            <button
-              type="button"
-              data-testid="search-artist-button"
-              disabled={ nameSearch.length < 2 }
-              onClick={ () => this.searchAlbums(nameSearch) }
-            >
-              Pesquisar
-            </button>
-            {foundAlbum ? (
-              <CardAlbum data={ data } nameSearch={ valueSearch } />
-            ) : (
-              <p>Nenhum álbum foi encontrado</p>
-            )}
-          </form>
+          <div>
+            <form className={ styles.container }>
+              <input
+                name="nameSearch"
+                type="text"
+                placeholder="Nome do Artista ou Banda"
+                data-testid="search-artist-input"
+                value={ nameSearch }
+                onChange={ this.onInputChange }
+              />
+              <button
+                type="button"
+                data-testid="search-artist-button"
+                disabled={ nameSearch.length < 2 }
+                onClick={ () => this.searchAlbums(nameSearch) }
+              >
+                Pesquisar
+              </button>
+              {foundAlbum ? null : <p>Nenhum álbum foi encontrado</p>}
+            </form>
+            {foundAlbum && <CardAlbum data={ data } nameSearch={ valueSearch } />}
+          </div>
         )}
       </div>
     );

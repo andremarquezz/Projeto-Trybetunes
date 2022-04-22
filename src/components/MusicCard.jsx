@@ -96,7 +96,7 @@ class MusicCard extends Component {
                   checked={ this.isFavorite(trackName) }
                   name="checkbox"
                   data-testid={ `checkbox-music-${trackId}` }
-                  onChange={ (event) => this.saveFavorite(trackName, event) }
+                  onChange={ () => this.saveFavorite(trackName) }
                 />
                 Favorita
               </label>
