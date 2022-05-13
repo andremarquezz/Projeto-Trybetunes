@@ -8,7 +8,7 @@ class CardAlbum extends Component {
     const { data, nameSearch } = this.props;
     return (
       <>
-        <p>{`Resultado de álbuns de: ${nameSearch}`}</p>
+        <h2>{`Resultado de álbuns de: ${nameSearch}`}</h2>
         <div className={ styles.container }>
           {data.map(({ artistName, collectionName, artworkUrl100, collectionId }) => (
             <div key={ collectionId } className={ styles.card }>

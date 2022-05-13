@@ -50,7 +50,7 @@ class Search extends Component {
         {loading ? (
           <Loading />
         ) : (
-          <div>
+          <div className={ styles.form }>
             <form className={ styles.container }>
               <input
                 name="nameSearch"
