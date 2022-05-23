@@ -52,7 +52,6 @@ class FavoriteMusic extends Component {
             ) : (
               <>
                 <audio
-                  data-testid="audio-component"
                   src={ previewUrl }
                   className={ styles.audio }
                   controls
@@ -64,7 +63,6 @@ class FavoriteMusic extends Component {
                     type="checkbox"
                     checked={ this.isFavorite(trackName) }
                     name="checkbox"
-                    data-testid={ `checkbox-music-${trackId}` }
                     onChange={ () => this.isChecked(trackName) }
                   />
                   Favorita

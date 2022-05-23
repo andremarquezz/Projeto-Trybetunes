@@ -38,39 +38,37 @@ class Search extends Component {
           data,
           foundAlbum: data.length !== 0,
         });
-      },
+      }
     );
   };
 
   render() {
     const { nameSearch, loading, foundAlbum, data, valueSearch } = this.state;
     return (
-      <div data-testid="page-search">
+      <div>
         <Header />
         {loading ? (
           <Loading />
         ) : (
-          <div className={ styles.form }>
-            <form className={ styles.container }>
+          <div className={styles.form}>
+            <form className={styles.container}>
               <input
-                name="nameSearch"
-                type="text"
-                placeholder="Nome do Artista ou Banda"
-                data-testid="search-artist-input"
-                value={ nameSearch }
-                onChange={ this.onInputChange }
+                name='nameSearch'
+                type='text'
+                placeholder='Nome do Artista ou Banda'
+                value={nameSearch}
+                onChange={this.onInputChange}
               />
               <button
-                type="button"
-                data-testid="search-artist-button"
-                disabled={ nameSearch.length < 2 }
-                onClick={ () => this.searchAlbums(nameSearch) }
+                type='button'
+                disabled={nameSearch.length < 2}
+                onClick={() => this.searchAlbums(nameSearch)}
               >
                 Pesquisar
               </button>
               {foundAlbum ? null : <p>Nenhum álbum foi encontrado</p>}
             </form>
-            {foundAlbum && <CardAlbum data={ data } nameSearch={ valueSearch } />}
+            {foundAlbum && <CardAlbum data={data} nameSearch={valueSearch} />}
           </div>
         )}
       </div>

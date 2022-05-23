@@ -34,7 +34,7 @@ class Favorites extends Component {
   render() {
     const { loading, songsFavorite } = this.state;
     return (
-      <div data-testid="page-favorites">
+      <div>
         <Header />
         {loading ? <Loading /> : <MusicCard songs={ songsFavorite } />}
       </div>

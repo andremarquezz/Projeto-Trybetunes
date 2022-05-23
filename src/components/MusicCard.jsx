@@ -92,7 +92,6 @@ class MusicCard extends Component {
             ) : (
               <>
                 <audio
-                  data-testid="audio-component"
                   src={ previewUrl }
                   className={ styles.audio }
                   controls
@@ -104,7 +103,6 @@ class MusicCard extends Component {
                     type="checkbox"
                     checked={ this.isFavorite(trackName) }
                     name="checkbox"
-                    data-testid={ `checkbox-music-${trackId}` }
                     onChange={ () => this.saveFavorite(trackName) }
                   />
                   Favorita

@@ -9,16 +9,15 @@ class CardAlbum extends Component {
     return (
       <>
         <h2>{`Resultado de álbuns de: ${nameSearch}`}</h2>
-        <div className={ styles.container }>
+        <div className={styles.container}>
           {data.map(({ artistName, collectionName, artworkUrl100, collectionId }) => (
-            <div key={ collectionId } className={ styles.card }>
-              <img src={ artworkUrl100 } alt="imageAlbum" />
+            <div key={collectionId} className={styles.card}>
+              <img className={styles.img} src={artworkUrl100} alt='imageAlbum' />
               <h3>{collectionName}</h3>
               <span>{artistName}</span>
               <Link
-                to={ `/album/${collectionId}` }
-                data-testid={ `link-to-album-${collectionId}` }
-                className={ styles.link }
+                to={`/album/${collectionId}`}
+                className={styles.link}
               >
                 Mais informações
               </Link>

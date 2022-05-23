@@ -36,16 +36,16 @@ class Album extends Component {
     const { infoTracks, tracks } = this.state;
     const { artistName, collectionName, artworkUrl100 } = infoTracks;
     return (
-      <div data-testid="page-album" className={ styles.pageAlbum }>
+      <div lassName={styles.pageAlbum}>
         <Header />
-        <section className={ styles.infoAlbum }>
+        <section className={styles.infoAlbum}>
           {' '}
-          <h2 data-testid="artist-name">{artistName}</h2>
-          <h2 data-testid="album-name">{collectionName}</h2>
-          <img src={ artworkUrl100 } alt="Capa do Album" />
+          <h2>{artistName}</h2>
+          <h2>{collectionName}</h2>
+          <img src={artworkUrl100} alt='Capa do Album' />
         </section>
 
-        <MusicCard songs={ tracks } />
+        <MusicCard songs={tracks} />
       </div>
     );
   }
