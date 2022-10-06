@@ -2,7 +2,6 @@
   "name": "trybetunes",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://andremarquezz.github.io/ProjetoTrybetunes/",
   "engines": {
     "node": "16"
   },
